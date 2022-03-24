@@ -1,9 +1,0 @@
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\bin\CP_CW_7902_Service.dll.config
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\bin\CP_CW_7902_Service.dll
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\bin\CP_CW_7902_Service.pdb
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\bin\SynConnectDLL.dll
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\obj\Debug\CP_CW_7902_Service.csproj.AssemblyReference.cache
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\obj\Debug\CP_CW_7902_Service.csproj.CoreCompileInputs.cache
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\obj\Debug\CP_CW_7902_Service.csproj.CopyComplete
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\obj\Debug\CP_CW_7902_Service.dll
-D:\VisualStudio\CP_Tutorials\CW\CP_CW_7902\CP_CW_7902_Service\obj\Debug\CP_CW_7902_Service.pdb

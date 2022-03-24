@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="dN5aILV9cF8s/j5WnROXgwEWGL6T7V9uVoHs1AKhnBA=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="x+RORCCFs5HBtExIbcVi6IApcONuj1reGNAergYtBqc=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITerminalService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITerminalService" contract="TerminalService.ITerminalService" bindingType="basicHttpBinding" address="http://localhost:55310/Services/TerminalService.svc" bindingConfiguration="BasicHttpBinding_ITerminalService">
+    <endpoint name="BasicHttpBinding_ITerminalService" contract="TerminalService.ITerminalService" bindingType="basicHttpBinding" address="http://localhost:65422/TerminalService.svc" bindingConfiguration="BasicHttpBinding_ITerminalService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:55310/Services/TerminalService.svc</serializedValue>
+          <serializedValue>http://localhost:65422/TerminalService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

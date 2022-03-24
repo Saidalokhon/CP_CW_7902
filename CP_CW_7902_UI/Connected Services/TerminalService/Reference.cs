@@ -26,6 +26,18 @@ namespace CP_CW_7902_UI.TerminalService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/GetStatus", ReplyAction="http://tempuri.org/ITerminalService/GetStatusResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/TruncateDatabase", ReplyAction="http://tempuri.org/ITerminalService/TruncateDatabaseResponse")]
+        void TruncateDatabase();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/TruncateDatabase", ReplyAction="http://tempuri.org/ITerminalService/TruncateDatabaseResponse")]
+        System.Threading.Tasks.Task TruncateDatabaseAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/GetDatabase", ReplyAction="http://tempuri.org/ITerminalService/GetDatabaseResponse")]
+        string[][] GetDatabase();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/GetDatabase", ReplyAction="http://tempuri.org/ITerminalService/GetDatabaseResponse")]
+        System.Threading.Tasks.Task<string[][]> GetDatabaseAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +81,22 @@ namespace CP_CW_7902_UI.TerminalService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync() {
             return base.Channel.GetStatusAsync();
+        }
+        
+        public void TruncateDatabase() {
+            base.Channel.TruncateDatabase();
+        }
+        
+        public System.Threading.Tasks.Task TruncateDatabaseAsync() {
+            return base.Channel.TruncateDatabaseAsync();
+        }
+        
+        public string[][] GetDatabase() {
+            return base.Channel.GetDatabase();
+        }
+        
+        public System.Threading.Tasks.Task<string[][]> GetDatabaseAsync() {
+            return base.Channel.GetDatabaseAsync();
         }
     }
 }

@@ -14,49 +14,42 @@ namespace CP_CW_7902_UI.Models
         {
             Ip = ip;
 
-            dataGridView.Invoke((MethodInvoker)delegate 
-            { 
-                dataGridView.Rows.Add(new[] { Ip, Status.ToString() }); 
-            });
-
-            RowCount = dataGridView.Rows.Count - 1;
-
-            UpdateTerminalStatus("waiting", dataGridView);
-        }
-
-        public void UpdateTerminalStatus(string status, DataGridView dataGridView)
-        {
-            Status = 
-                status.ToLower().Equals("waiting") ? Statuses.Waiting : 
-                status.ToLower().Equals("inprocess") ? Statuses.InProcess :
-                status.ToLower().Equals("finished") ? Statuses.Finished : throw new Exception($"Unknown status { status }");
             dataGridView.Invoke((MethodInvoker)delegate
             {
-                switch(Status)
-                {
-                    case Terminal.Statuses.Waiting:
-                        dataGridView.Rows[RowCount].DefaultCellStyle.BackColor = Color.Red;
-                        break;
-                    case Terminal.Statuses.InProcess:
-                        dataGridView.Rows[RowCount].DefaultCellStyle.BackColor = Color.Yellow;
-                        break;
-                    case Terminal.Statuses.Finished:
-                        dataGridView.Rows[RowCount].DefaultCellStyle.BackColor = Color.Green;
-                        break;
-                }
-                dataGridView.Rows[RowCount].Cells["Status"].Value = Status.ToString();
+                dataGridView.Rows.Add(new[] { Ip, "Waiting" });
             });
+
+            UpdateStatus("waiting", dataGridView);
         }
 
-        public int RowCount { get; set; }
-        public string Ip { get; set; }
-        public Statuses Status { get; set; }
-
-        public enum Statuses
+        public void UpdateStatus(string status, DataGridView dataGridView)
         {
-            Waiting,
-            InProcess,
-            Finished
+            foreach(DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells[0].Value.ToString() == Ip)
+                {
+                    switch(status.ToLower().Trim())
+                    {
+                        case "inprocess":
+                            row.DefaultCellStyle.BackColor = Color.Red;
+                            Status = "InProcess";
+                            row.Cells[1].Value = Status;
+                            break;
+                        case "waiting":
+                            row.DefaultCellStyle.BackColor= Color.Yellow;
+                            row.Cells[1].Value = Status;
+                            Status = "Waiting";
+                            break;
+                        case "finished":
+                            row.DefaultCellStyle.BackColor = Color.Green;
+                            row.Cells[1].Value = Status;
+                            Status = "Finished";
+                            break;
+                    }
+                }
+            }
         }
+        public string Ip { get; set; }
+        public string Status { get; set; }
     }
 }
