@@ -3,11 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CP_CW_7902_UI
@@ -86,7 +83,7 @@ namespace CP_CW_7902_UI
         {
             string action = (string)e.Argument;
 
-            switch(action)
+            switch (action)
             {
                 case "update":
                     List<Swipe> swipes = new List<Swipe>();

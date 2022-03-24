@@ -6,9 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
 
 namespace CP_CW_7902_BL
@@ -56,7 +54,7 @@ namespace CP_CW_7902_BL
         private void AddSwipesToDatabase(Terminal terminal)
         {
             object _lock = new object();
-            lock(_lock)
+            lock (_lock)
             {
                 new SwipesRepository(ConfigurationManager.ConnectionStrings["SwipeDatabase"].ConnectionString)
                     .Insert(new Mapper(new MapperConfiguration(cfg =>

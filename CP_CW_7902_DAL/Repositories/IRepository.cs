@@ -1,9 +1,4 @@
-﻿using CP_CW_7902_DAL.DBO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CP_CW_7902_DAL.Repositories
 {

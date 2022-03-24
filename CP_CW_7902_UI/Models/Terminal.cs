@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace CP_CW_7902_UI.Models
@@ -24,11 +19,11 @@ namespace CP_CW_7902_UI.Models
 
         public void UpdateStatus(string status, DataGridView dataGridView)
         {
-            foreach(DataGridViewRow row in dataGridView.Rows)
+            foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 if (row.Cells[0].Value.ToString() == Ip)
                 {
-                    switch(status.ToLower().Trim())
+                    switch (status.ToLower().Trim())
                     {
                         case "inprocess":
                             row.DefaultCellStyle.BackColor = Color.Red;
@@ -36,7 +31,7 @@ namespace CP_CW_7902_UI.Models
                             row.Cells[1].Value = Status;
                             break;
                         case "waiting":
-                            row.DefaultCellStyle.BackColor= Color.Yellow;
+                            row.DefaultCellStyle.BackColor = Color.Yellow;
                             row.Cells[1].Value = Status;
                             Status = "Waiting";
                             break;

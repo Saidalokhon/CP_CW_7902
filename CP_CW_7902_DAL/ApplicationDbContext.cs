@@ -2,12 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CP_CW_7902_DAL
 {
@@ -18,11 +13,13 @@ namespace CP_CW_7902_DAL
                 .UseSqlServer(new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json").Build()
-                .GetConnectionString("SwipesDatabase")).Options) { }
+                .GetConnectionString("SwipesDatabase")).Options)
+        { }
 
         public ApplicationDbContext(string connectionString) :
             base(new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(connectionString).Options) { }
+                .UseSqlServer(connectionString).Options)
+        { }
 
         public virtual DbSet<Swipe> Swipes { get; set; }
     }
