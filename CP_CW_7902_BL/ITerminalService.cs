@@ -8,10 +8,10 @@ namespace CP_CW_7902_BL
     public interface ITerminalService
     {
         [OperationContract]
-        void StartCollectingSwipes();
+        bool StartCollectingSwipes(string clientToken);
 
         [OperationContract]
-        Dictionary<string, string> GetStatus();
+        Dictionary<string, string> GetStatus(string clientToken);
 
         [OperationContract]
         void TruncateDatabase();

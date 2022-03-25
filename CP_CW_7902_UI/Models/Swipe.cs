@@ -12,7 +12,6 @@ namespace CP_CW_7902_UI.Models
             TerminalIp = parameters[3];
         }
 
-
         public void AddSwipeToDataGridView(DataGridView dataGridView)
         {
             dataGridView.Invoke((MethodInvoker)delegate

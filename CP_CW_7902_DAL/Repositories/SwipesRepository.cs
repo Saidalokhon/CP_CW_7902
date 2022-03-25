@@ -12,6 +12,7 @@ namespace CP_CW_7902_DAL.Repositories
             ConnectionString = connectionString;
         }
 
+        #region GetAll
         public List<Swipe> GetAll()
         {
             using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
@@ -19,7 +20,8 @@ namespace CP_CW_7902_DAL.Repositories
                 return context.Swipes.ToList();
             }
         }
-
+        #endregion
+        #region Insert
         public void Insert(List<Swipe> entities)
         {
             using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
@@ -29,7 +31,8 @@ namespace CP_CW_7902_DAL.Repositories
             }
 
         }
-
+        #endregion
+        #region Truncate
         public void Truncate()
         {
             using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
@@ -38,5 +41,6 @@ namespace CP_CW_7902_DAL.Repositories
                 context.SaveChanges();
             }
         }
+        #endregion
     }
 }

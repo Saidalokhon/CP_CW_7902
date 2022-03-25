@@ -44,6 +44,7 @@ namespace CP_CW_7902_UI.Models
                 }
             }
         }
+
         public string Ip { get; set; }
         public string Status { get; set; }
     }

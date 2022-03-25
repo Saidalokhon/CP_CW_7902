@@ -40,7 +40,7 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_Update = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Clear = new System.Windows.Forms.Button();
             this.dgv_Swipes = new System.Windows.Forms.DataGridView();
             this.SwipeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +48,6 @@
             this.TerminalIp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bgw_MainBGWorker = new System.ComponentModel.BackgroundWorker();
             this.bgw_UpdateDatabaseBGWorker = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Terminals)).BeginInit();
@@ -162,7 +161,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btn_Update);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btn_Clear);
             this.tabPage2.Controls.Add(this.dgv_Swipes);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
@@ -183,17 +182,17 @@
             this.btn_Update.UseVisualStyleBackColor = true;
             this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
-            // button1
+            // btn_Clear
             // 
-            this.button1.BackColor = System.Drawing.Color.IndianRed;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(519, 377);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 31);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Clear.BackColor = System.Drawing.Color.IndianRed;
+            this.btn_Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Clear.Location = new System.Drawing.Point(519, 377);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(129, 31);
+            this.btn_Clear.TabIndex = 2;
+            this.btn_Clear.Text = "Clear";
+            this.btn_Clear.UseVisualStyleBackColor = false;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
             // dgv_Swipes
             // 
@@ -310,13 +309,12 @@
         private System.Windows.Forms.ProgressBar pgb_Progress;
         private System.Windows.Forms.Label lbl_ProgressText;
         private System.Windows.Forms.Button btn_Update;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.DataGridViewTextBoxColumn SwipeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Direction;
         private System.Windows.Forms.DataGridViewTextBoxColumn TerminalIp;
         private System.ComponentModel.BackgroundWorker bgw_UpdateDatabaseBGWorker;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

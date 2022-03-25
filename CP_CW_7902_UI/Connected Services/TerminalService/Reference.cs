@@ -16,16 +16,16 @@ namespace CP_CW_7902_UI.TerminalService {
     public interface ITerminalService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/StartCollectingSwipes", ReplyAction="http://tempuri.org/ITerminalService/StartCollectingSwipesResponse")]
-        void StartCollectingSwipes();
+        bool StartCollectingSwipes(string clientToken);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/StartCollectingSwipes", ReplyAction="http://tempuri.org/ITerminalService/StartCollectingSwipesResponse")]
-        System.Threading.Tasks.Task StartCollectingSwipesAsync();
+        System.Threading.Tasks.Task<bool> StartCollectingSwipesAsync(string clientToken);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/GetStatus", ReplyAction="http://tempuri.org/ITerminalService/GetStatusResponse")]
-        System.Collections.Generic.Dictionary<string, string> GetStatus();
+        System.Collections.Generic.Dictionary<string, string> GetStatus(string clientToken);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/GetStatus", ReplyAction="http://tempuri.org/ITerminalService/GetStatusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync(string clientToken);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITerminalService/TruncateDatabase", ReplyAction="http://tempuri.org/ITerminalService/TruncateDatabaseResponse")]
         void TruncateDatabase();
@@ -67,20 +67,20 @@ namespace CP_CW_7902_UI.TerminalService {
                 base(binding, remoteAddress) {
         }
         
-        public void StartCollectingSwipes() {
-            base.Channel.StartCollectingSwipes();
+        public bool StartCollectingSwipes(string clientToken) {
+            return base.Channel.StartCollectingSwipes(clientToken);
         }
         
-        public System.Threading.Tasks.Task StartCollectingSwipesAsync() {
-            return base.Channel.StartCollectingSwipesAsync();
+        public System.Threading.Tasks.Task<bool> StartCollectingSwipesAsync(string clientToken) {
+            return base.Channel.StartCollectingSwipesAsync(clientToken);
         }
         
-        public System.Collections.Generic.Dictionary<string, string> GetStatus() {
-            return base.Channel.GetStatus();
+        public System.Collections.Generic.Dictionary<string, string> GetStatus(string clientToken) {
+            return base.Channel.GetStatus(clientToken);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync() {
-            return base.Channel.GetStatusAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string>> GetStatusAsync(string clientToken) {
+            return base.Channel.GetStatusAsync(clientToken);
         }
         
         public void TruncateDatabase() {

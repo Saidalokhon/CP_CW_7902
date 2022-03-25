@@ -16,30 +16,58 @@ namespace CP_CW_7902_BL
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class TerminalService : ITerminalService
     {
+        #region Local Variables
         Semaphore semaphore = new Semaphore(3, 3);
-        List<Terminal> terminals = new List<Terminal>();
+        Dictionary<string, List<Terminal>> terminals = new Dictionary<string, List<Terminal>>();
         SynConnectDLL.SynConnection connection = SynConnectDLL.SynConnection.GetInstance();
-
-        public Dictionary<string, string> GetStatus() => terminals.ToDictionary(t => t.Ip, t => t.Status.ToString());
-
-        public void StartCollectingSwipes()
+        string clientToken = "";
+        List<AutoResetEvent> events = new List<AutoResetEvent>();
+        static object _lock = new object();
+        #endregion
+        #region StartCollectingSwipes
+        public bool StartCollectingSwipes(string clientToken)
         {
-            UpdateTerminals();
+            if (clientToken.Equals(this.clientToken)) return false;
 
-            for (int i = 0; i < terminals.Count; i++)
-                new Thread((object obj) =>
-                {
-                    int count = (int)obj;
-                    FillTerminalSwipes(terminals[count]);
-                    terminals[count].Status = Statuses.Finished;
-                }).Start(i);
+            lock (_lock)
+            {
+                if (events.Count > 0) WaitHandle.WaitAll(events.ToArray());
+
+                UpdateService(clientToken);
+
+                for (int i = 0; i < terminals[clientToken].Count; i++)
+                    new Thread((object obj) =>
+                    {
+                        List<string> parameters = (List<string>)obj;
+
+                        int count = Convert.ToInt32(parameters[1]);
+                        string token = parameters[0];
+
+                        FillTerminalSwipes(terminals[token][count]);
+                        terminals[token][count].Status = Statuses.Finished;
+
+                        events[count].Set();
+                    }).Start(new List<string> { clientToken, i.ToString() });
+
+                this.clientToken = "";
+
+                return true;
+            }
         }
 
-        private void UpdateTerminals()
+        private void UpdateService(string clientToken)
         {
-            terminals.Clear();
             Random random = new Random();
-            for (int i = 0; i < 10; i++) terminals.Add(new Terminal(random));
+
+            events.Clear();
+
+            List<Terminal> terminals = new List<Terminal>();
+            for (int i = 0; i < 10; i++)
+            {
+                terminals.Add(new Terminal(random));
+                events.Add(new AutoResetEvent(false));
+            }
+            this.terminals.Add(clientToken, terminals);
         }
 
         private void FillTerminalSwipes(Terminal terminal)
@@ -53,8 +81,7 @@ namespace CP_CW_7902_BL
 
         private void AddSwipesToDatabase(Terminal terminal)
         {
-            object _lock = new object();
-            lock (_lock)
+            lock (this)
             {
                 new SwipesRepository(ConfigurationManager.ConnectionStrings["SwipeDatabase"].ConnectionString)
                     .Insert(new Mapper(new MapperConfiguration(cfg =>
@@ -66,12 +93,17 @@ namespace CP_CW_7902_BL
                     .Map<Models.Swipe[], IList<CP_CW_7902_DAL.DBO.Swipe>>(terminal.Swipes.ToArray()).ToList());
             }
         }
-
+        #endregion
+        #region GetStatus
+        public Dictionary<string, string> GetStatus(string clientToken) => terminals.ContainsKey(clientToken) ? terminals[clientToken].ToDictionary(t => t.Ip, t => t.Status.ToString()) : null;
+        #endregion
+        #region TruncateDatabase
         public void TruncateDatabase()
         {
             new SwipesRepository(ConfigurationManager.ConnectionStrings["SwipeDatabase"].ConnectionString).Truncate();
         }
-
+        #endregion
+        #region GetDatabase
         public List<List<string>> GetDatabase()
         {
             List<List<string>> list = new List<List<string>>();
@@ -79,5 +111,6 @@ namespace CP_CW_7902_BL
                 .ForEach(swipe => list.Add(new List<string> { swipe.SwipeId, swipe.Time.ToString(), swipe.Direction, swipe.TerminalIp }));
             return list;
         }
+        #endregion
     }
 }
