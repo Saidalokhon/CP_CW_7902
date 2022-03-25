@@ -1,2 +1,0 @@
-update-database -StartUpProject CP_CW_7902_DAL -project CP_CW_7902_DAL -v
-add-migration Initial -StartUpProject CP_CW_7902_DAL -project CP_CW_7902_DAL -v
