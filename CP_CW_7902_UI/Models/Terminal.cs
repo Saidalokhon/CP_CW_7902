@@ -5,6 +5,12 @@ namespace CP_CW_7902_UI.Models
 {
     public class Terminal
     {
+        /// <summary>
+        /// The constructor creates new terminal from passed IP and adds
+        /// the data to the table.
+        /// </summary>
+        /// <param name="dataGridView">The table the terminal to be added to.</param>
+        /// <param name="ip">The IP of the terminal.</param>
         public Terminal(string ip, DataGridView dataGridView)
         {
             Ip = ip;
@@ -17,6 +23,11 @@ namespace CP_CW_7902_UI.Models
             UpdateStatus("waiting", dataGridView);
         }
 
+        /// <summary>
+        /// The method updates the status of the terminal in the table.
+        /// </summary>
+        /// <param name="dataGridView">The table the terminal is in.</param>
+        /// <param name="status">The updated status.</param>
         public void UpdateStatus(string status, DataGridView dataGridView)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)

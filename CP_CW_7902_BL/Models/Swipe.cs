@@ -5,6 +5,10 @@ namespace CP_CW_7902_BL.Models
 {
     public class Swipe : ISwipe
     {
+        /// <summary>
+        /// The constructor creates the swipe from the passed string.
+        /// </summary>
+        /// <param name="swipe">The splitted string with swipe data taken from DLL function</param>
         public Swipe(string swipe)
         {
             SwipeId = swipe.Split(',')[0];

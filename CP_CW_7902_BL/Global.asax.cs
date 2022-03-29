@@ -11,6 +11,7 @@ namespace CP_CW_7902_BL
         protected void Application_Start(object sender, EventArgs e)
         {
             var builder = new ContainerBuilder();
+            // Register DbContext class. Make dependency injection.
             builder.RegisterType<ApplicationDbContext>();
             AutofacHostFactory.Container = builder.Build();
         }
