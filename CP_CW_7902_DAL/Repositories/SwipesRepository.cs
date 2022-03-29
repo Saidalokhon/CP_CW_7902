@@ -7,6 +7,7 @@ namespace CP_CW_7902_DAL.Repositories
     public class SwipesRepository : IRepository<Swipe>
     {
         private string ConnectionString;
+        private static object _lock = new object();
         public SwipesRepository(string connectionString)
         {
             ConnectionString = connectionString;
@@ -31,10 +32,13 @@ namespace CP_CW_7902_DAL.Repositories
         /// <param name="entities">The list of swipes to be inserted</param>
         public void Insert(List<Swipe> entities)
         {
-            using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
+            lock(_lock)
             {
-                context.Swipes.AddRange(entities);
-                context.SaveChanges();
+                using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
+                {
+                    context.Swipes.AddRange(entities);
+                    context.SaveChanges();
+                }
             }
 
         }
@@ -45,10 +49,13 @@ namespace CP_CW_7902_DAL.Repositories
         /// </summary>
         public void Truncate()
         {
-            using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
+            lock(_lock)
             {
-                foreach (Swipe swipe in context.Swipes.ToList()) context.Remove(swipe);
-                context.SaveChanges();
+                using (ApplicationDbContext context = new ApplicationDbContext(ConnectionString))
+                {
+                    foreach (Swipe swipe in context.Swipes.ToList()) context.Remove(swipe);
+                    context.SaveChanges();
+                }
             }
         }
         #endregion
